@@ -1,0 +1,60 @@
+sudo add-apt-repository ppa:juju/stable
+sudo apt-get update
+sudo apt-get install charm-tools
+
+# Create your charm-development with charm-create command.
+charm-create hello-world
+
+# Edit README
+cd hello-world
+mv README.ex README
+vi README
+
+# Edit metadata.yaml
+
+name: hello-world
+summary: The hello-world charm
+maintainer: erik_lonroth <erik.lonroth@gmail.com>
+description: |
+  Does nothing
+tags:
+  - misc
+
+
+# Implement a few hooks
+install - for actually fetching and installing the Vanilla code.
+start - for when the application needs to be started.
+stop - for stopping it again.
+
+mkdir hooks
+cd hooks
+vi install
+vi start
+vi stop
+chmod +x *
+
+#!/bin/bash
+set -e
+juju-log "configuration-changed hook was run"
+
+#!/bin/bash
+set -e
+status-set maintenance "Installing zip package."
+sudo apt -y install zip
+juju-log "Installed zip"
+
+#!/bin/bash
+set -e
+status-set active "Stared hello-world"
+#!/bin/bash
+status-set maintenance "Stopped for maintenance"
+
+# Test
+charm proof hello-world
+
+# Deploy
+juju deploy ~/charms/hello-world --series xenial
+
+# Watch it come alive
+juju status
+

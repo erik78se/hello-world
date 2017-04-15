@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+juju-log "configuration-changed hook was run"

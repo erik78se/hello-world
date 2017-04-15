@@ -1,0 +1,7 @@
+name: hello-world
+summary: The hello-world charm
+maintainer: erik_lonroth <erik.lonroth@gmail.com>
+description: |
+  Does nothing
+tags:
+  - misc

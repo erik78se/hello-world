@@ -1,0 +1,22 @@
+# Overview
+
+Hello world
+
+# Usage
+
+juju deploy hello-world
+
+# Configuration
+
+None
+
+# Contact Information
+
+erik.lonroth@gmail.com
+
+## Upstream Project Name
+
+- http://lonroth.net
+
+[service]: http://example.com
+[icon guidelines]: https://jujucharms.com/docs/stable/authors-charm-icon
