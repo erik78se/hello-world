@@ -1,14 +1,11 @@
-* juju gui
-* github account
-
 In this tutorial, you will learn how to get started with the basics of developing a juju charm.
 Thers are some official documentation on Canonical homepage that takes you through a similar process,
 but personally I found it a bit too heavy, so I decided to make my own tutorial covering a really minimal
-case to get started. Our juju charm will install a package and implement the hooks "install", "start", "stop", "configuration-changed" which is the things that you probably are reading this for.
+case to get started. Our juju charm will install a package and implement the hooks "install", "start", "stop", "config-changed" which is the things that you probably are reading this for.
 
-Lets get started with going through the prerequisistes for getting through this tutorial.
+Lets go through the prerequisistes for this tutorial.
 
-# Getting ready
+# Ubuntu, charm-tools & juju
 The tutorial is performed on a Ubuntu 16.04.1 LTS 64 bit operating system.
 The reason is that we are going to make use of the "charm-tools" package to help us
 through the charm build process. 
@@ -33,20 +30,22 @@ sudo apt-get install charm-tools
 You now have charm-tools installed.
 
 # Creating the hello-world charm.
-Now we are going to develop our charm. The charm name will be "hello-world" and will demonstrate
-3 things:
+The charm name will be "hello-world" and will demonstrate 3 things:
 
 1. Create the formal requirements files (meta information) of our hello-world charm.
-2. Implement four hooks that makes a charm useful: "install", "start", "stop", "configuration-changed"
+2. Implement four hooks that makes a charm useful: "install", "start", "stop", "config-changed"
 3. Verify (proof) the hello-world charm.
 4. Deploy the hello-world charm.
 5. Remove the hello-world charm.
 
-Lets get started by using the charm-tools to start the development.
+Lets create some working directories and use charm-tools to start the development.
 
-# Create your charm-development with charm-create command also organizing our directories.
 mkdir -p juju/charms
+cd juju/charms
 charm-create hello-world
+
+A new directory named "hello-world" is created which contrains the skeleton for our charm.
+Lets fill in some metadata for our charm to make it compliant with a good charm.
 
 # Edit README and copyright
 cd hello-world
@@ -71,19 +70,18 @@ The hooks we are about to create are:
 install - like packages and code etc. Perhaps also run ansible commands that installs your stuff.
 start - for when the application needs to be started.
 stop - for stopping it again.
-configuration-changed - is run when configuration of a charm has been altered.
+config-changed - is run when configuration of a charm has been altered.
 
 Inside the "juju/charms/hello-world" directory, create the hooks dir and create the files.
 
 mkdir hooks
 cd hooks
-chmod +x *
+touch install start stop config-changed
 
-
-## The configuration-changed hook code
+## The config-changed hook code
 #!/bin/bash
 set -e
-juju-log "configuration-changed hook was run"
+juju-log "config-changed hook was run"
 
 ## The install hook code
 #!/bin/bash

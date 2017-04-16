@@ -1,3 +1,5 @@
+## The start hook code
 #!/bin/bash
 set -e
-status-set active "Stared hello-world"
+status-set active "Started hello-world"
+

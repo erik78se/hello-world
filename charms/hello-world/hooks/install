@@ -2,5 +2,5 @@
 set -e
 status-set maintenance "Installing zip package."
 sudo apt -y install zip
-# Status https://jujucharms.com/docs/2.1/reference-status
 juju-log "Installed zip"
+

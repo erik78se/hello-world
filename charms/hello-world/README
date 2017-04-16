@@ -1,14 +1,17 @@
 # Overview
 
-Hello world
+hello-world charm is a demo charm that intends to help beginners getting started
+development of extremely basic juju charms.
 
 # Usage
 
-juju deploy hello-world
+This charm is probably deployed from a local repository like this:
+
+juju deploy ~/juju/charms/hello-world --series=trusty
 
 # Configuration
 
-None
+This charm has no configuration items yet. 
 
 # Contact Information
 
@@ -18,5 +21,6 @@ erik.lonroth@gmail.com
 
 - http://lonroth.net
 
-[service]: http://example.com
+[service]: http://lonroth.net
 [icon guidelines]: https://jujucharms.com/docs/stable/authors-charm-icon
+
