@@ -9,6 +9,11 @@ This charm is probably deployed from a local repository like this:
 
 juju deploy ~/juju/charms/hello-world --series=trusty
 
+With juju, you can test start, stop hooks once its deployed.
+
+juju run --unit hello-world/1 'hooks/start'
+juju run --unit hello-world/1 'hooks/stop'
+
 # Configuration
 
 This charm has no configuration items yet. 
