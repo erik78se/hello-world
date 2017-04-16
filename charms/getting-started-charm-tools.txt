@@ -48,12 +48,13 @@ Lets get started by using the charm-tools to start the development.
 mkdir -p juju/charms
 charm-create hello-world
 
-# Edit README
+# Edit README and copyright
 cd hello-world
 mv README.ex README
 vi README
+vi copyright
 
-# Edit metadata.yaml to look like this
+# Edit metadata.yaml to look something like this
 
 name: hello-world
 summary: The hello-world charm
