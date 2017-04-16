@@ -1,8 +1,51 @@
+* juju gui
+* github account
+
+In this tutorial, you will learn how to get started with the basics of developing a juju charm.
+Thers are some official documentation on Canonical homepage that takes you through a similar process,
+but personally I found it a bit too heavy, so I decided to make my own tutorial covering a really minimal
+case to get started. Our juju charm will install a package and implement the hooks "install", "start", "stop", "configuration-changed" which is the things that you probably are reading this for.
+
+Lets get started with going through the prerequisistes for getting through this tutorial.
+
+# Getting ready
+The tutorial is performed on a Ubuntu 16.04.1 LTS 64 bit operating system.
+The reason is that we are going to make use of the "charm-tools" package to help us
+through the charm build process. 
+
+The version of juju is juju-2.0. If you run on earlier versions, you might experience problems
+deploying the hello-world charm from a "local repository".
+
+I will assume you have a running instance of juju on your local host. Verify that its operational by running:
+
+juju status.
+
+If nothing goes wrong, you are all set up OK.
+
+# Get the latest version of "charm-tools".
+Even though you might succeed building a charm "manually" charm-tools are essential to make the build
+process easy. Add the package repo to your apt-source by issuing the following commands:
+
 sudo add-apt-repository ppa:juju/stable
 sudo apt-get update
 sudo apt-get install charm-tools
 
-# Create your charm-development with charm-create command.
+You now have charm-tools installed.
+
+# Creating the hello-world charm.
+Now we are going to develop our charm. The charm name will be "hello-world" and will demonstrate
+3 things:
+
+1. Create the formal requirements files (meta information) of our hello-world charm.
+2. Implement four hooks that makes a charm useful: "install", "start", "stop", "configuration-changed"
+3. Verify (proof) the hello-world charm.
+4. Deploy the hello-world charm.
+5. Remove the hello-world charm.
+
+Lets get started by using the charm-tools to start the development.
+
+# Create your charm-development with charm-create command also organizing our directories.
+mkdir -p juju/charms
 charm-create hello-world
 
 # Edit README
@@ -10,51 +53,62 @@ cd hello-world
 mv README.ex README
 vi README
 
-# Edit metadata.yaml
+# Edit metadata.yaml to look like this
 
 name: hello-world
 summary: The hello-world charm
 maintainer: erik_lonroth <erik.lonroth@gmail.com>
 description: |
-  Does nothing
+  This is the hello-world charm.
 tags:
   - misc
 
 
-# Implement a few hooks
-install - for actually fetching and installing the Vanilla code.
+# Implement the hooks
+The hooks we are about to create are:
+
+install - like packages and code etc. Perhaps also run ansible commands that installs your stuff.
 start - for when the application needs to be started.
 stop - for stopping it again.
+configuration-changed - is run when configuration of a charm has been altered.
+
+Inside the "juju/charms/hello-world" directory, create the hooks dir and create the files.
 
 mkdir hooks
 cd hooks
-vi install
-vi start
-vi stop
 chmod +x *
 
+
+## The configuration-changed hook code
 #!/bin/bash
 set -e
 juju-log "configuration-changed hook was run"
 
+## The install hook code
 #!/bin/bash
 set -e
 status-set maintenance "Installing zip package."
 sudo apt -y install zip
 juju-log "Installed zip"
 
+## The start hook code
 #!/bin/bash
 set -e
-status-set active "Stared hello-world"
+status-set active "Started hello-world"
+
+## The stop hook code
 #!/bin/bash
 status-set maintenance "Stopped for maintenance"
 
-# Test
+Make the scripts executable
+chmod +x *
+
+# Verify the charm
 charm proof hello-world
 
 # Deploy
 juju deploy ~/charms/hello-world --series xenial
 
-# Watch it come alive
+# Watch it start
 juju status
 
