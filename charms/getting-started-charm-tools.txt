@@ -4,7 +4,7 @@ but personally I found it a bit too heavy, so I decided to make my own tutorial 
 case to get started. 
 
 This juju charm will install a package, implement the hooks "install", "start", "stop", "config-changed".
-These hooks are the minimal useful things a charm needs to implement to be useful.
+These hooks are the bare minimum a charm needs to implement to be useful in a getting started context.
 
 Lets go through the prerequisistes for this tutorial.
 
