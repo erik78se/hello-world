@@ -1,7 +1,10 @@
 In this tutorial, you will learn how to get started with the basics of developing a juju charm.
 Thers are some official documentation on Canonical homepage that takes you through a similar process,
 but personally I found it a bit too heavy, so I decided to make my own tutorial covering a really minimal
-case to get started. Our juju charm will install a package and implement the hooks "install", "start", "stop", "config-changed" which is the things that you probably are reading this for.
+case to get started. 
+
+This juju charm will install a package, implement the hooks "install", "start", "stop", "config-changed".
+These hooks are the minimal useful things a charm needs to implement to be useful.
 
 Lets go through the prerequisistes for this tutorial.
 
