@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
-status-set active "Started hello-world"
-
+MESSAGE=$(config-get message)
+status-set active "Started with message: $MESSAGE"
