@@ -1,7 +1,3 @@
-This repo is dedicated to juju development.
+This is the working code for the "Hello World" tutorial: https://github.com/erik78se/juju/wiki/The-hello-world-charm
 
-Look in the wiki for tutorials.
-
-Start with the "Hello World" tutorial: https://github.com/erik78se/juju/wiki/The-hello-world-charm
-
-Happy to get your feedback.
+Please feedback if you find this useful or file an issue if you find problems.
